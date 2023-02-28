@@ -3,17 +3,26 @@
     <h1>
       List of Posts
     </h1>
-    <PostList />
+    <div class="card mt-2" v-for="post in allPosts" v-bind:key="post.id">
+      <div class="card-header">
+        {{ post.title }}
+      </div>
+      <div class="card-body">
+        {{ post.body }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import PostList from './components/PostList.vue'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'App',
-  components: {
-    PostList
+  computed: mapGetters(['allPosts']),
+  methods: mapActions(['fetchPosts']),
+  async mounted () {
+    this.fetchPosts()
   }
 }
 </script>
@@ -25,6 +34,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 60px auto;
+  width: 400px;
 }
 </style>
