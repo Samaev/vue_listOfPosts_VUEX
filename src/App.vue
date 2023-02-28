@@ -4,7 +4,8 @@
       List of Posts
     </h1>
     <div class="card mt-2" v-for="post in allPosts" v-bind:key="post.id">
-      <div class="card-header">
+      <div class="card-header">{{ allUsers.find(user=>user.id === post.userId).name }}</div>
+      <div class="card-title">
         {{ post.title }}
       </div>
       <div class="card-body">
@@ -19,10 +20,11 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'App',
-  computed: mapGetters(['allPosts']),
-  methods: mapActions(['fetchPosts']),
+  computed: mapGetters(['allPosts', 'allUsers']),
+  methods: mapActions(['fetchPosts', 'fetchUsers']),
   async mounted () {
     this.fetchPosts()
+    this.fetchUsers()
   }
 }
 </script>
