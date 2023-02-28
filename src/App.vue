@@ -11,7 +11,7 @@
     </h1>
     <div class="card mt-2" v-for="post in allPosts.filter(post=>post.userId === selectedUser.id)" v-bind:key="post.id">
       <div class="card-header">{{ allUsers.find(user=>user.id === post.userId).name }}</div>
-      <div class="card-title">
+      <div class="card-title lead text-primary">
         {{ post.title }}
       </div>
       <div class="card-body">
